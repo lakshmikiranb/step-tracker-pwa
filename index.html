@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Step Tracker PWA</title>
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+</head>
+<body>
+<div class="container">
+    <h1>Step Tracker & Health Monitor</h1>
+    <div class="stats">
+        <p>Steps: <span id="steps">0</span></p>
+        <p>Calories Burned: <span id="calories">0</span></p>
+        <p>Location: <span id="location">Fetching...</span></p>
+    </div>
+    <button id="shareBtn">Share All Details</button>
+
+    <div class="contacts">
+        <h2>Contacts</h2>
+        <ul id="contactList"></ul>
+    </div>
+
+    <div class="chart-container">
+        <h2>Daily Progress</h2>
+        <canvas id="progressChart" width="300" height="200"></canvas>
+    </div>
+</div>
+<script src="chart.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
