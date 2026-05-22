@@ -15,10 +15,17 @@
         <p>Calories Burned: <span id="calories">0</span></p>
         <p>Location: <span id="location">Fetching...</span></p>
     </div>
+
     <button id="shareBtn">Share All Details</button>
 
     <div class="contacts">
         <h2>Contacts</h2>
+        <!-- Form for adding/updating contacts -->
+        <form id="contactForm">
+            <input type="text" id="contactName" placeholder="Name" required>
+            <input type="email" id="contactEmail" placeholder="Email" required>
+            <button type="submit">Add Contact</button>
+        </form>
         <ul id="contactList"></ul>
     </div>
 
@@ -27,6 +34,7 @@
         <canvas id="progressChart" width="300" height="200"></canvas>
     </div>
 </div>
+
 <script src="chart.min.js"></script>
 <script src="script.js"></script>
 </body>
