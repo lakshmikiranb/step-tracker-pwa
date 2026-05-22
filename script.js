@@ -14,10 +14,9 @@ const contactEmailInput = document.getElementById('contactEmail');
 const contactListEl = document.getElementById('contactList');
 const shareBtn = document.getElementById('shareBtn');
 
-// ---------- Contacts (from localStorage) ----------
+// ---------- Contacts ----------
 let contacts = JSON.parse(localStorage.getItem('contacts')) || [];
 
-// Render contact list
 function renderContacts() {
     contactListEl.innerHTML = '';
     contacts.forEach((c, index) => {
@@ -48,12 +47,10 @@ function renderContacts() {
     });
 }
 
-// Save contacts
 function saveContacts() {
     localStorage.setItem('contacts', JSON.stringify(contacts));
 }
 
-// Handle contact form submit
 contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const name = contactNameInput.value.trim();
@@ -71,7 +68,6 @@ contactForm.addEventListener('submit', (e) => {
     }
 });
 
-// Initial render
 renderContacts();
 
 // ---------- Step Tracking ----------
@@ -102,14 +98,14 @@ if (navigator.geolocation) {
     }, () => locationEl.textContent = 'Location denied');
 }
 
-// ---------- Share All Details ----------
+// ---------- Share Details ----------
 shareBtn.addEventListener('click', () => {
     const data = { steps, calories: (steps * caloriesPerStep).toFixed(2), location: userLocation };
     contacts.forEach(c => console.log(`Sharing with ${c.email}:`, data));
     alert('Details shared with all contacts (simulated)!');
 });
 
-// ---------- Daily Stats (IndexedDB) ----------
+// ---------- IndexedDB for Daily Stats ----------
 let db;
 const request = indexedDB.open('StepTrackerDB', 1);
 request.onupgradeneeded = event => {
@@ -148,13 +144,11 @@ function loadDailyStats() {
     };
 }
 
-// ---------- Update UI Stats ----------
 function updateStats() {
     stepsEl.textContent = steps;
     caloriesEl.textContent = (steps * caloriesPerStep).toFixed(2);
 }
 
-// ---------- Draw Chart ----------
 function drawChart(stats) {
     const labels = stats.map(s => s.date);
     const data = stats.map(s => s.steps);
@@ -172,14 +166,11 @@ function drawChart(stats) {
                 tension: 0.2
             }]
         },
-        options: {
-            responsive: true,
-            scales: { y: { beginAtZero: true } }
-        }
+        options: { responsive: true, scales: { y: { beginAtZero: true } } }
     });
 }
 
-// ---------- Register Service Worker ----------
+// ---------- Service Worker ----------
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('service-worker.js')
         .then(() => console.log('Service Worker Registered'));
